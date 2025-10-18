@@ -11,3 +11,4 @@ def test_swag_lab_login(login_fixture):
     obj.password_field("secret_sauce")
     obj.login_click()
     assert driver.title=="Swag Labs"
+
