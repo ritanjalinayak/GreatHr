@@ -9,5 +9,5 @@ def login_fixture():
     driver.get("https://www.saucedemo.com/")
     time.sleep(2)
     yield driver
-    time.sleep(4)
+    time.sleep(3)
     driver.quit()
