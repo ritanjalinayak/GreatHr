@@ -27,40 +27,43 @@ class filter_visible_test:
     
       
     def sorting_order(self):
-        total=self.driver.find_elements(*self.name)
-        for x in total:
-            self.sorting_checking.append(x.text)
-
+        self.getproduct_name()
         return self.sorting_checking == sorted(self.sorting_checking)
 
       
     def reverse_true(self):
+        self.getproduct_name()
+        return self.sorting_checking == sorted(self.sorting_checking,reverse=True) 
+    
+
+    def getproduct_name(self):
         self.sorting_checking =[]
         total=self.driver.find_elements(*self.name)
         for x in total:
             self.sorting_checking.append(x.text)
 
-        return self.sorting_checking == sorted(self.sorting_checking,reverse=True) 
+
     
     def price_checking(self):
-        all_price=self.driver.find_elements(*self.checking_price)
-        for y in all_price:
-            b = y.text
-            c = b[1:]
-            d = float(c)
-            self.current_prices.append(d)
-        print(self.current_prices)
+        self.getPrices()
         return self.current_prices == sorted(self.current_prices)
     
 
     def CheckingPrice_H_to_low(self):
+        self.getPrices()
+        return self.current_prices ==sorted(self.current_prices,reverse=True)
+    
+    # common function for get the price of product
+
+    def getPrices(self):
         self.current_prices=[]
         all_price=self.driver.find_elements(*self.checking_price)
         for y in all_price:
             a=y.text[1:]
             b=float(a)
             self.current_prices.append(b)
-        return self.current_prices ==sorted(self.current_prices,reverse=True)
+
+
         
             
         
