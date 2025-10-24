@@ -1,17 +1,17 @@
 
-from selenium import webdriver
-import time
 
 import pytest
+import time
+from selenium import webdriver
 
 from login.common_logic import Login_page
 
 
 @pytest.fixture(scope="function")
-def fix_setup():
+def setUp_fixture():
     driver=webdriver.Chrome()
-    driver.get("https://www.saucedemo.com/inventory.html")
-    time.sleep(2)
+    driver.get("https://www.saucedemo.com/")
+    driver.maximize_window()
     login_obj=Login_page(driver)
     login_obj.username_field("standard_user")
     login_obj.password_field("secret_sauce")
@@ -19,4 +19,4 @@ def fix_setup():
     yield driver
     time.sleep(2)
     driver.quit()
-    
+
