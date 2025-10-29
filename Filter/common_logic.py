@@ -1,16 +1,11 @@
-import select
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-
-
 
 
 class filter_visible_test:
     def __init__(self,driver):
         self.driver=driver
-        self.username=(By.ID, "user-name")
-        self.password=(By.ID, "password")
-        self.login=(By.ID, "login-button")
         self.dropdown=(By.TAG_NAME,"select")
         self.name=(By.CLASS_NAME,"inventory_item_name")
         self.checking_price=(By.CLASS_NAME, "inventory_item_price")
