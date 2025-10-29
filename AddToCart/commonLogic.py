@@ -14,6 +14,8 @@ class cartpage:
         self.cartButton=(By.CLASS_NAME,"shopping_cart_link")
         self.check_item_name=(By.CLASS_NAME,"inventory_item_name")
         self.check_item_price=(By.CSS_SELECTOR, ".inventory_item_price")
+        self.original_price =""
+        self.original_name=""
         
 
     def check_addToCart(self):
@@ -26,12 +28,25 @@ class cartpage:
     def match_product(self):
         cart_badge = self.driver.find_element(*self.filter)
         return self.totalcart == int(cart_badge.text)
+
+
     
     def add_one_product(self):
-        one_items=self.driver.find_elements(*self.addtocart_all)
-        for item in one_items:
-            if item.text=="Sauce Labs Bolt T-Shirt":
-               self.driver.find_element(*self.add_one_product).click()
+        one_items= self.driver.find_elements(*self.addtocart_all)
+
+        self.original_price = one_items[2].find_element(By.CLASS_NAME,"inventory_item_price").text
+        self.original_name = one_items[2].find_element(By.CLASS_NAME,"inventory_item_name").text
+
+
+
+        #  one_items= self.driver.find_elements(*self.addtocart_all)
+        # for i in one_items:
+        #     name = i.find_element(By.CLASS_NAME,"inventory_item_name").text
+        #     if name == "Sauce Labs Bolt T-Shirt":
+        #         price = i.find_element(By.CSS_SELECTOR, ".inventory_item_price").text
+        #         i.find_element(*self.addTocart_button).click()
+                
+        
 
 
     def click_cart_button(self):
