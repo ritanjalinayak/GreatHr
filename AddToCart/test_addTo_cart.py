@@ -14,5 +14,17 @@ def test_check_AddTOcart(setup_driver):
 
 
 
+@pytest.mark.verifyProduct
+def test_verify_cartItem(setup_driver):
+    driver=setup_driver
+    call=cartpage(driver)
+    call.add_one_product()
+    call.click_cart_button()
+    
+    assert call.verifyCartItem()==True
+
+
+
+
     
 
